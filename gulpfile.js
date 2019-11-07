@@ -1,17 +1,16 @@
 var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
-var glob = require('glob')
+var sass = require('gulp-sass');
 
 //task sass
 gulp.task('sass', gulp.series( function(){
-    return sass('sass/**/*.sass')
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('css'));
+    return gulp.src('./sass/**/*.sass')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./css'));
 }));
 
 //task watch
 gulp.task('watch', gulp.series( function(){
-    gulp.watch('sass/**/*.sass', gulp.parallel('sass'));
+    gulp.watch('./sass/**/*.sass', gulp.parallel('./sass'));
 }));
 
 //task default
